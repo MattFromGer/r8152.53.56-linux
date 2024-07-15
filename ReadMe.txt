@@ -24,6 +24,9 @@
 	2.5G for kernel v4.10 and later
 	# ethtool -s eth0 autoneg on advertise 0x80000000002f
 
+	5G for kernel v4.10 and later (Couldn't be supported before kernel v4.10)
+	# ethtool -s eth0 autoneg on advertise 0x180000000002f
+
 	# ethtool -s eth0 autoneg on advertise 0x002f (1G)
 	# ethtool -s eth0 autoneg on advertise 0x000f (100M full)
 	# ethtool -s eth0 autoneg on advertise 0x0003 (10M full)
@@ -39,3 +42,20 @@
 
 	Changes the number of ring entries for the Rx ring.
 	# ethtool -G eth0 rx 100
+
+- Tunable parameters
+
+	Get the current rx copybreak value in bytes.
+	# ethtool --get-tunable eth0 rx-copybreak
+
+	Set the rx copybreak value in bytes.
+	# ethtool --set-tunable eth0 rx-copybreak 256
+
+- Flow control
+
+	Queries the specified Ethernet device for pause parameter information.
+	# ethtool -a eth0
+
+	Changes the pause parameters of the specified Ethernet device.
+	# ethtool -A eth0 rx off tx off (Disable flow control)
+	# ethtool -A eth0 rx on tx off (Enable flow control)
